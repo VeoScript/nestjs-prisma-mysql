@@ -17,15 +17,28 @@ export class TodoService {
     return await this.prismaService.todo.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
+  async findOne(id: string) {
+    return await this.prismaService.todo.findFirst({
+      where: {
+        id: id
+      }
+    });
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
+  async update(id: string, updateTodoDto: UpdateTodoDto) {
+    return this.prismaService.todo.update({
+      where: {
+        id: id
+      },
+      data: updateTodoDto
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  async remove(id: string) {
+    return await this.prismaService.todo.delete({
+      where: {
+        id: id
+      }
+    });
   }
 }
