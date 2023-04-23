@@ -13,8 +13,8 @@ export class TodoService {
     });
   }
 
-  findAll() {
-    return `This action returns all todo`;
+  async findAll() {
+    return await this.prismaService.todo.findMany();
   }
 
   findOne(id: number) {
