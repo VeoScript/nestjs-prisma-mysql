@@ -9,3 +9,9 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Todo {
+  id          String            @id              @default(cuid())
+  title       String
+  done        Boolean                            @default(false)
+}
